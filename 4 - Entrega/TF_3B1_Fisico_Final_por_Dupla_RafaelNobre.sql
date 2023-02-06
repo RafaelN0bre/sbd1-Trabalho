@@ -131,7 +131,7 @@ CREATE TABLE VENDA (
     idFormaPagamento INT(3) NOT NULL,
     idTipoVenda INT(3) NOT NULL,
     dataVenda DATE NOT NULL,
-    codLoja INT(4) NOT NULL,
+    codLoja INT(3) NOT NULL,
 
 
     CONSTRAINT VENDA_PK PRIMARY KEY(codVenda),
