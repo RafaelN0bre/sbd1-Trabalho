@@ -1,4 +1,4 @@
---------  << TF_TEMA3_ACAI >>  ----------
+--------  << TF_3B1_RAFAELNOBRE >>  ----------
 --
 --                SCRIPT DE CRIACAO (DDL)
 --
@@ -6,7 +6,7 @@
 -- Autor(es) ..............: Rafael de Medeiros Nobre 
 --                           Rodrigo Edmar Wright Dos Santos
 -- Banco de Dados .........: MySQL 8.0
--- Base de Dados (nome) ...: TF_TEMA3_ACAI
+-- Base de Dados (nome) ...: TF_3B1_RAFAELNOBRE
 --
 -- 
 -- PROJETO => 01 Base de Dados
@@ -14,16 +14,15 @@
 --
 -- ---------------------------------------------------------
 
-CREATE DATABASE IF NOT EXISTS TF_TEMA3_ACAI;
+CREATE DATABASE IF NOT EXISTS TF_3B1_RAFAELNOBRE;
 
-USE TF_TEMA3_ACAI;
+USE TF_3B1_RAFAELNOBRE;
 
 CREATE TABLE PRODUTO (
     codProduto INT(3) AUTO_INCREMENT NOT NULL,
     nomeProduto VARCHAR(30) NOT NULL,
     validadeEmDias INT(4),
-    quantidadeAtual INT(4) NOT NULL,
-    
+
 	CONSTRAINT PRODUTO_PK PRIMARY KEY (codProduto)
 )ENGINE = InnoDB AUTO_INCREMENT = 1;
 
@@ -72,6 +71,26 @@ CREATE TABLE LOJA (
             on delete restrict
             
 )ENGINE = InnoDB AUTO_INCREMENT = 1;
+
+CREATE TABLE ESTOQUE(
+    codLoja INT(3) NOT NULL,
+    codProduto INT(3) NOT NULL,
+    quantidadeAtual INT(4) NOT NULL,
+    unidadeMedida VARCHAR(100) NOT NULL,
+
+
+    CONSTRAINT ESTOQUE_PK PRIMARY KEY(codLoja, codProduto),
+
+    CONSTRAINT ESTOQUE_LOJA_FK FOREIGN KEY (codLoja)
+        REFERENCES LOJA (codLoja)
+            on update cascade
+            on delete restrict,
+
+    CONSTRAINT ESTOQUE_PRODUTO_FK FOREIGN KEY (codProduto)
+    REFERENCES PRODUTO (codProduto)
+        on update cascade
+        on delete restrict
+)ENGINE = InnoDB;
 
 CREATE TABLE OPCAOCARDAPIO (
     codOpcaoCardapio INT(3) AUTO_INCREMENT NOT NULL,
@@ -173,14 +192,15 @@ CREATE TABLE PEDIDOFORNECEDOR (
     preco DECIMAL(7, 2) NOT NULL,    
     cnpjFornecedor BIGINT(14) NOT NULL,
     codProduto INT(3) NOT NULL,
+    codLoja INT(3) NOT NULL,
 
     CONSTRAINT PEDIDOFORNECEDOR_PK PRIMARY KEY(idPedidoFornecedor),
     CONSTRAINT PEDIDOFORNECEDOR_FORNECEDOR_FK FOREIGN KEY(cnpjFornecedor)
         REFERENCES FORNECEDOR (cnpjFornecedor)
             on update cascade
             on delete restrict,
-    CONSTRAINT PEDIDOFORNECEDOR_PRODUTO_FK FOREIGN KEY(codProduto)
-        REFERENCES PRODUTO (codProduto)
+    CONSTRAINT PEDIDOFORNECEDOR_ESTOQUE_FK FOREIGN KEY(codLoja, codProduto)
+        REFERENCES ESTOQUE (codLoja, codProduto)
             on update cascade
             on delete restrict
 )ENGINE = InnoDB AUTO_INCREMENT=1; 
@@ -191,12 +211,13 @@ CREATE TABLE ABASTECIMENTO (
     preco DECIMAL(7, 2) NOT NULL,
     dataAbastecimento DATE NOT NULL,
     codProduto INT(3) NOT NULL,
+    codLoja INT(3) NOT NULL,
 
     CONSTRAINT ABASTECIMENTO_PK PRIMARY KEY(idAbastecimento),
-    CONSTRAINT ABASTECIMENTO_PRODUTO_FK FOREIGN KEY(codProduto)
-        REFERENCES PRODUTO (codProduto)
+    CONSTRAINT ABASTECIMENTO_ESTOQUE_FK FOREIGN KEY(codLoja, codProduto)
+        REFERENCES ESTOQUE (codLoja, codProduto)
             on update cascade
-            on delete restrict  
+            on delete restrict 
 )ENGINE = InnoDB AUTO_INCREMENT=1;
 
 CREATE TABLE TIPOMANUTENCAO (
@@ -248,19 +269,6 @@ CREATE TABLE telefone (
             on delete restrict
 )ENGINE = InnoDB;
 
-CREATE TABLE feitoCom (
-    codProduto INT(3) NOT NULL,
-    codOpcaoCardapio INT(3) NOT NULL,
-    
-    CONSTRAINT feitoCom_PRODUTO_FK FOREIGN KEY (codProduto)
-        REFERENCES PRODUTO (codProduto)
-            on update cascade
-            on delete restrict,
-    CONSTRAINT feitoCom_OPCAOCARDAPIO_FK FOREIGN KEY (codOpcaoCardapio)
-        REFERENCES OPCAOCARDAPIO (codOpcaoCardapio)
-            on update cascade
-            on delete restrict
-)ENGINE = InnoDB;
 
 CREATE TABLE trabalha (
     cpfFuncionario BIGINT(11) NOT NULL,

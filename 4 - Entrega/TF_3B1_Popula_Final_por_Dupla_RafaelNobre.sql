@@ -1,4 +1,4 @@
---------  << TF_TEMA3_ACAI >>  ----------
+--------  << TF_3B1_RAFAELNOBRE >>  ----------
 --
 --                SCRIPT POPULA (DML)
 --
@@ -6,7 +6,7 @@
 -- Autor(es) ..............: Rafael de Medeiros Nobre 
 --                           Rodrigo Edmar Wright Dos Santos
 -- Banco de Dados .........: MySQL 8.0
--- Base de Dados (nome) ...: TF_TEMA3_ACAI
+-- Base de Dados (nome) ...: TF_3B1_RAFAELNOBRE
 --
 -- Ultimas Alteracoes
 -- 
@@ -15,29 +15,29 @@
 --
 -- ---------------------------------------------------------
 
-USE TF_TEMA3_ACAI;
+USE TF_3B1_RAFAELNOBRE;
 
-INSERT INTO PRODUTO(nomeProduto, validadeEmDias, quantidadeAtual)
+INSERT INTO PRODUTO(nomeProduto, validadeEmDias)
     VALUES
-        ('Margarina', 30, 3),
-        ('Orégano', 60, 5),
-        ('Queijo', 15, 3),
-        ('Frango', 20, 5),
-        ('Farinha de Trigo', 30, 3),
-        ('Fermento', 10, 2),
-        ('Farinha panco', 30, 5),
-        ('Farinha de rosca', 40, 5),
-        ('Xarope de guaraná', 20, 10),
-        ('Açaí puro', 30, 50),
-        ('Banana', 10, 10),
-        ('Granola', 30, 10),
-        ('Leite em pó', 20, 5),
-        ('Leite condensado', 20, 10),
-        ('Aveia', 20, 10),
-        ('Óleo', 10, 5),
-        ('Carne moída', 10, 10),
-        ('Catupiry', 10, 10),
-        ('Amendoim', 15, 10);
+        ('Margarina', 30),
+        ('Orégano', 60),
+        ('Queijo', 15),
+        ('Frango', 20),
+        ('Farinha de Trigo', 30),
+        ('Fermento', 10),
+        ('Farinha panco', 30),
+        ('Farinha de rosca', 40),
+        ('Xarope de guaraná', 20),
+        ('Açaí puro', 30),
+        ('Banana', 10),
+        ('Granola', 30),
+        ('Leite em pó', 20),
+        ('Leite condensado', 20),
+        ('Aveia', 20),
+        ('Óleo', 10),
+        ('Carne moída', 10),
+        ('Catupiry', 10),
+        ('Amendoim', 15);
         
 
 
@@ -50,7 +50,8 @@ INSERT INTO ENDERECO (cep, estado, cidade, bairro, logradouro)
         (72035506, 'Distrito Federal', 'Taguatinga', 'Taguatinga Sul', 'CSG 06'),
         (71200100, 'Distrito Federal', 'Guará', 'Zona Industrial', 'SIA TRECHO 10'),
         (72311109, 'Distrito Federal', 'Samambaia', 'Samambaia Sul', 'Quadra QR 327 Conjunto 9'),
-        (72265160, 'Distrito Federal', 'Ceilândia', 'Setor Industria', 'Quadra Quadra 16');
+        (72265160, 'Distrito Federal', 'Ceilândia', 'Setor Industria', 'Quadra Quadra 16'),
+        (71266110, 'Distrito Federal', 'Brasília', 'Setor Especia', ' Quadra 2 Conjunto 2');
 
 
 INSERT INTO FUNCIONARIO(cpfFuncionario, nomeCompleto, dataContratacao, dataNascimento, telefoneCelular, email, salarioFixo, cep)
@@ -59,13 +60,35 @@ INSERT INTO FUNCIONARIO(cpfFuncionario, nomeCompleto, dataContratacao, dataNasci
         (15732923543, 'Tom Cruise', '2022-03-23', '1962-07-03', 61969384273, 'topmcruise@gmail.com', 1750.00, 72015015),
         (22397464160, 'Danielle Deadwyler', '2022-11-24', '1982-05-03', 61993961186, NULL, 1500.00, 72035506),
         (05226122888, 'James Cameron', '2023-01-22', '1954-08-16', 61975086781, 'jamescameron@gmail.com', 750.00, 71936970),
-        (05226122887, 'Christian Bale', '2022-10-22', '1974-01-30', 61987540887, 'christianbale@gmail.com', 800.00, 72035506);
+        (05226122887, 'Christian Bale', '2022-10-22', '1974-01-30', 61987540887, 'christianbale@gmail.com', 800.00, 72035506),
+        (77608741201, 'Al Paccino', '2019-10-30', '1972-09-23', 61987540888, 'alpatino@gmail.com', 2000.00, 71266110),
+        (12341234565, 'Lionel Messi', '2023-02-05', '1987-06-24', 61983412349, 'messi@gmail.com', 1200.00, 72005755);
 
 
 INSERT INTO LOJA (dataAbertura, cep, cpfFuncionario)
     VALUES
         ('2022-01-25', 71936970, 15732923543),
-        ('2012-01-01', 72015015, 22397464160);
+        ('2012-01-01', 72015015, 22397464160),
+        ('2019-01-02', 71200100, 77608741201),
+        ('2018-03-03', 03527000, 05226122888),
+        ('2017-04-04', 72311109, 05226122887);
+
+
+INSERT INTO ESTOQUE(codLoja, codProduto, quantidadeAtual, unidadeMedida)
+    VALUES
+        (1, 1, 2, 'pote'),
+        (1, 2, 50, 'grama'),
+        (1, 3, 2, 'kilograma'),
+        (2, 4, 2, 'kilograma'),
+        (2, 10, 50, 'barra'),
+        (1, 10, 20, 'barra'),
+        (2, 11, 20, 'unidade'),
+        (1, 11, 20, 'unidade'),
+        (1, 15, 5, 'kilograma'),
+        (2, 9, 2, 'litro'),
+        (1, 6, 2, 'kilograma'),
+        (1, 9, 3, 'litro'),
+        (2, 1, 3, 'pote');
 
 INSERT INTO OPCAOCARDAPIO (nomeOpcao, valorAtual, descricao)
     VALUES
@@ -138,22 +161,22 @@ INSERT INTO CLIENTE(whatsappCliente, nomeCliente)
         (6134338128, "Victoria Justice"),
         (6127234437, "Paulo Freire");
 
-INSERT INTO PEDIDOFORNECEDOR(dataPedido, qtdProduto, dataEntrega, preco, cnpjFornecedor, codProduto)
+INSERT INTO PEDIDOFORNECEDOR(dataPedido, qtdProduto, dataEntrega, preco, cnpjFornecedor, codProduto, codLoja)
     VALUES
-        ('2021-01-03', 100, '2021-01-05', 3.50, 77181665000173, 10),
-        ('2022-04-23', 20, '2022-04-25', 10.90, 72758195000144, 9),
-        ('2021-06-22', 40, '2022-04-25', 15.90, 83624193000189, 1),
-        ('2023-01-10', 15, '2022-04-25', 12.90, 91401760000166, 4),
-        ('2021-05-12', 30, '2022-04-25', 7.90, 72758195000144, 11);
+        ('2021-01-03', 100, '2021-01-05', 3.50, 77181665000173, 10, 1),
+        ('2022-04-23', 20, '2022-04-25', 10.90, 72758195000144, 9, 1),
+        ('2021-06-22', 40, '2022-04-25', 15.90, 83624193000189, 1, 2),
+        ('2023-01-10', 15, '2022-04-25', 12.90, 91401760000166, 4, 2),
+        ('2021-05-12', 30, '2022-04-25', 7.90, 72758195000144, 11, 1);
 
 
-INSERT INTO ABASTECIMENTO(qtdProduto, preco, dataAbastecimento, codProduto)
+INSERT INTO ABASTECIMENTO(qtdProduto, preco, dataAbastecimento, codProduto, codLoja)
     VALUES
-        (10, 3.10, '2023-02-02', 11),
-        (20, 5.90, '2021-06-23', 15),
-        (6, 4.80, '2022-04-01', 9),
-        (2, 22.00, '2021-07-11', 1),
-        (12, 33.25, '2023-08-30', 6);
+        (10, 3.10, '2023-02-02', 11, 1),
+        (20, 5.90, '2021-06-23', 15, 1),
+        (6, 4.80, '2022-04-01', 9, 2),
+        (2, 22.00, '2021-07-11', 1, 1),
+        (12, 33.25, '2023-08-30', 6, 1);
 
 INSERT INTO TIPOMANUTENCAO (tipoManutencao, descricao)
     VALUES
@@ -194,14 +217,6 @@ INSERT INTO telefone (cnpjFornecedor, ddd, numero)
         (31237664000100, 61, 33412313);
 
 
-INSERT INTO feitoCom(codProduto, codOpcaoCardapio)
-    VALUES
-        (10, 1),
-        (12, 1),
-        (10, 2),
-        (6, 4),
-        (2, 6);
-
 INSERT INTO trabalha(cpfFuncionario, codLoja)
     VALUES
         (83613238055, 1),
@@ -217,7 +232,9 @@ INSERT INTO exerce(cbo, cpfFuncionario)
         (514320, 83613238055),
         (612005, 15732923543),
         (513205, 05226122887),
-        (513205, 05226122888);
+        (513205, 05226122888),
+        (252210, 77608741201),
+        (421125, 12341234565);
 
 INSERT INTO contem(codVenda, codOpcaoCardapio, quantidade, valorVenda)
     VALUES

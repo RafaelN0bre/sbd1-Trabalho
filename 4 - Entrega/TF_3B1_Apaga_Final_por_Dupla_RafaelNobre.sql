@@ -1,4 +1,4 @@
---------  << TF_TEMA3_ACAI >>  ----------
+--------  << TF_3B1_RAFAELNOBRE >>  ----------
 --
 --                SCRIPT DE REMOCAO (DDL)
 --
@@ -6,7 +6,7 @@
 -- Autor(es) ..............: Rafael de Medeiros Nobre 
 --                           Rodrigo Edmar Wright Dos Santos
 -- Banco de Dados .........: MySQL 8.0
--- Base de Dados (nome) ...: TF_TEMA3_ACAI
+-- Base de Dados (nome) ...: TF_3B1_RAFAELNOBRE
 --
 -- Ultimas Alteracoes
 -- 
@@ -15,13 +15,12 @@
 --
 -- ---------------------------------------------------------
 
-USE TF_TEMA3_ACAI;
+USE TF_3B1_RAFAELNOBRE;
 
 DROP TABLE fornece;
 DROP TABLE contem;
 DROP TABLE exerce;
 DROP TABLE trabalha;
-DROP TABLE feitoCom;
 DROP TABLE telefone;
 DROP TABLE ferias;
 DROP TABLE MANUTENCAO;
@@ -36,7 +35,16 @@ DROP TABLE TIPOVENDA;
 DROP TABLE FORMAPAGAMENTO;
 DROP TABLE ATIVIDADE;
 DROP TABLE OPCAOCARDAPIO;
+DROP TABLE ESTOQUE;
 DROP TABLE LOJA;
 DROP TABLE FUNCIONARIO;
 DROP TABLE ENDERECO;
 DROP TABLE PRODUTO;
+
+DROP USER operador_caixa;
+DROP USER operador_estoque;
+DROP USER admin_acai;
+
+DROP ROLE estoque;
+DROP ROLE caixa;
+DROP ROLE administrador;
